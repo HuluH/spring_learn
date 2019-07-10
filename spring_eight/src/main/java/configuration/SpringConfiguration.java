@@ -18,30 +18,20 @@ import javax.sql.DataSource;
  * Bean
  *          作用：表明哪些需要注入到spring的IOC容器中
  *          属性：scope  同xml配置文件中的scope属性，表名当前bean是单例还是多例
+ * Import
+ *          作用：用于引入其他的注解配置类
+ *          属性：value 用于指定其他配置类的字节码
+ *                当我们使用Import注解之后，有Import注解的就是父配置类，而导入的就是子配置类
+ * PropertySource
+ *          作用：用于指定properties文件的位置
+ *          属性：value 用于指定文件的路径和名称
+ *                关键字 classpath，表示类路径下
  */
 
 @Configuration
 @ComponentScan(value = {"com.test"})
+@Import(JDBCConfiguration.class)
+@PropertySource("classpath:jdbc.properties")
 public class SpringConfiguration {
 
-    @Bean("runner")
-    @Scope("prototype")
-    public QueryRunner createQueryRunner(DataSource dataSource) {
-        return new QueryRunner(dataSource);
-    }
-
-    @Bean("dataSource")
-    public DataSource createDataSource() {
-        try {
-            ComboPooledDataSource ds = new ComboPooledDataSource();
-            ds.setDriverClass("com.mysql.jdbc.Driver");
-            ds.setJdbcUrl("jdbc:mysql://localhost:3306/eesy");
-            ds.setUser("root");
-            ds.setPassword("root");
-
-            return ds;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
