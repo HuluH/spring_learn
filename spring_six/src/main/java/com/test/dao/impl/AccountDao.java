@@ -1,6 +1,5 @@
 package com.test.dao.impl;
 
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import com.test.dao.IAccountDao;
 import com.test.domain.Account;
 import org.apache.commons.dbutils.QueryRunner;
