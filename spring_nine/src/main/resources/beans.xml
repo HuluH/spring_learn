@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountService" class="com.test.service.impl.AccountService">
+        <property name="accountDao" ref="accountDao"/>
+        <property name="txManager" ref="txManager"></property>
+    </bean>
+
+    <bean id="accountDao" class="com.test.dao.impl.AccountDao">
+        <property name="runner" ref="runner"/>
+        <property name="connectionUtils" ref="connection"></property>
+    </bean>
+
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+
+    <bean id="connection" class="com.test.utils.ConnectionUtils">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <bean id="txManager" class="com.test.utils.TransactionManager">
+        <property name="connectionUtils" ref="connection"></property>
+     </bean>
+</beans>
