@@ -1,17 +1,15 @@
 package configuration;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.apache.commons.dbutils.QueryRunner;
-import org.springframework.context.annotation.*;
-
-import javax.sql.ConnectionPoolDataSource;
-import javax.sql.DataSource;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * 用配置类来替代beans.xml文件
  *
  * Configuration:
- *          作用：用来标志该类是spring的一个注解类，用来代替spring的xml文件
+ *          作用：用来标志该类是spring的一个配置类，用来代替spring的xml文件
  * ComponentScan：
  *          作用：用来标记spring的ioc容器从哪个包中获取带注解的实例
  *          属性：value  basePackage  指定扫描的包
