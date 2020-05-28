@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="  http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解扫描-->
+    <context:component-scan base-package="com.test.*"></context:component-scan>
+    <!--开启注解方式的aop-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://182.92.83.216:3306/test"></property>
+        <property name="username" value="test"></property>
+        <property name="password" value="Test@123"></property>
+    </bean>
+    <!--配置JDBC操作模板-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+<!--    &lt;!&ndash;开启事务注解&ndash;&gt;-->
+<!--    <tx:annotation-driven transaction-manager="transActionManager"></tx:annotation-driven>-->
+
+    <!--定义事务管理器-->
+    <bean id="transActionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+<!--    &lt;!&ndash;配置事务属性&ndash;&gt;-->
+<!--    <tx:advice id="testLogAdvice" transaction-manager="transActionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="select" isolation="DEFAULT" propagation="REQUIRED" read-only="true" timeout="-1"/>-->
+<!--            <tx:method name="add" propagation="REQUIRED"></tx:method>-->
+<!--            <tx:method name="delete" propagation="REQUIRED"></tx:method>-->
+<!--            <tx:method name="update" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" ></tx:method>-->
+<!--            <tx:method name="transfer" propagation="REQUIRED"></tx:method>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+<!--    &lt;!&ndash;配置事务的aop切入点&ndash;&gt;-->
+<!--    <aop:config >-->
+<!--        <aop:pointcut id="services" expression="execution(public* com.test.service.*.*(..))"/>-->
+<!--        <aop:advisor advice-ref="testLogAdvice" pointcut-ref="services"></aop:advisor>-->
+<!--    </aop:config>-->
+</beans>
