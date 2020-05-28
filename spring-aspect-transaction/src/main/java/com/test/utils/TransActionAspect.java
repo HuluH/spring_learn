@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 //@Component("transActionAspect")
 //@Aspect
 public class TransActionAspect implements Ordered {
-    @Override
     public int getOrder() {
         return 0;
     }

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class SecurityAspect implements Ordered {
     private static Logger logger = LoggerFactory.getLogger(SecurityAspect.class);
 
-    @Override
     public int getOrder() {
         return 1;
     }
