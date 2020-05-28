@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("accountService")
-@Transactional("transActionManager")
+@Transactional
 public class AccountServiceImpl implements AccountService {
     private Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
     private AccountDao accountDao;

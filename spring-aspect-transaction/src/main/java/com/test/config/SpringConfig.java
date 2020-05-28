@@ -1,13 +1,13 @@
 package com.test.config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//@Configuration
-//@EnableTransactionManagement
-//@ComponentScan(value = "com.test.*")
-//@EnableAspectJAutoProxy
+@Configuration
+@ComponentScan(value = "com.test.*")
+@EnableTransactionManagement
+@EnableAspectJAutoProxy
+@PropertySource("classpath:jdbc.properties")
+@Import({DataConfig.class,TransactionConfig.class})
 public class SpringConfig {
 }
