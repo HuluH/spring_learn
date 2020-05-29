@@ -4,22 +4,23 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
 @Data
 @Slf4j
+@Component
 public class DataConfig {
-    @Value("${driver}")
+    @Value("${jdbc.driver}")
     private String driver;
-    @Value("${url}")
+    @Value("${jdbc.url}")
     private String url;
-    @Value("${username}")
+    @Value("${jdbc.username}")
     private String username;
-    @Value("${password}")
+    @Value("${jdbc.password}")
     private String password;
 
     @Bean("dataSource")
@@ -29,7 +30,6 @@ public class DataConfig {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        log.info(dataSource.getUsername());
         return dataSource;
     }
 

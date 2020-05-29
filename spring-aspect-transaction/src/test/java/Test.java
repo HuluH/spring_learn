@@ -8,7 +8,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Test {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Test.class);
-        logger.info("开始执行");
+        logger.info("交易开始");
+
 //        此次注释为将xml配置文件转为注解配置文件
 //        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
@@ -22,6 +23,6 @@ public class Test {
             logger.info("转账失败，失败原因：" +  e.getMessage());
         }
 
-        logger.info("结束执行");
+        logger.info("交易结束");
     }
 }

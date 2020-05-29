@@ -5,9 +5,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ComponentScan(value = "com.test.*")
-@EnableTransactionManagement
 @EnableAspectJAutoProxy
-@PropertySource("classpath:jdbc.properties")
-@Import({DataConfig.class,TransactionConfig.class})
+@PropertySource("jdbc.properties")
+@EnableTransactionManagement
 public class SpringConfig {
 }
